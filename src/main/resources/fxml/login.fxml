@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.shape.Circle?>
+
+<StackPane xmlns="http://javafx.com/javafx"
+          xmlns:fx="http://javafx.com/fxml"
+          fx:controller="com.library.controller.LoginController"
+          stylesheets="@../css/login.css">
+
+    <VBox alignment="CENTER" spacing="10">
+        <padding><Insets top="20" right="20" bottom="20" left="20"/></padding>
+
+        <Label fx:id="titleLabel" text="Library Management System"/>
+        <Label fx:id="subtitleLabel" text="Welcome Back!"/>
+        
+        <GridPane vgap="10" hgap="10">
+            <Label text="Email:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+            <TextField fx:id="emailField" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+            
+            <Label text="Password:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+            <PasswordField fx:id="passwordField" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+            
+            <Label text="Role:" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+            <ComboBox fx:id="roleComboBox" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+        </GridPane>
+
+        <HBox spacing="10" alignment="CENTER_LEFT">
+            <CheckBox fx:id="rememberMeCheckbox" text="Remember Me"/>
+            <Region HBox.hgrow="ALWAYS"/>
+        </HBox>
+
+        <HBox spacing="10" alignment="CENTER">
+            <Button text="Login" onAction="#handleLogin"/>
+            <Button fx:id="registerButton" text="Register" onAction="#handleRegister" visible="false" managed="false"/>
+        </HBox>
+    </VBox>
+
+    <VBox fx:id="loadingOverlay" alignment="CENTER" spacing="20" visible="false">
+        <padding><Insets top="20" right="20" bottom="20" left="20"/></padding>
+        
+        <ProgressIndicator fx:id="loadingSpinner" progress="-1" prefWidth="50" prefHeight="50"/>
+        <Label fx:id="loadingText" text="Loading..."/>
+    </VBox>
+</StackPane>

@@ -1,0 +1,132 @@
+.root {
+    -fx-background-color: #E3FDFD;
+}
+
+.tab-pane {
+    -fx-background-color: #E3FDFD;
+}
+
+.tab {
+    -fx-background-color: #EEEEEE;
+    -fx-padding: 10px 20px;
+    -fx-text-fill: #2C3E50 !important;
+    -fx-font-weight: bold;
+    -fx-font-size: 14px;
+}
+
+.tab:selected {
+    -fx-background-color: #00ADB5;
+    -fx-text-fill: #EEEEEE;
+}
+
+.tab-pane .tab-header-area .tab-header-background {
+    -fx-background-color: #EEEEEE;
+}
+
+.tab-pane .tab-header-area .tab {
+    -fx-background-color: #E3FDFD;
+    -fx-border-width: 1px;
+    -fx-border-radius: 5px 5px 0 0;
+    -fx-padding: 8px 20px;
+}
+
+.tab-pane .tab-header-area .tab .tab-label {
+    -fx-text-fill: #2C3E50;
+    -fx-font-weight: bold;
+    -fx-font-size: 14px;
+}
+
+.tab-pane .tab-header-area .tab:selected .tab-label {
+    -fx-text-fill: #EEEEEE;
+}
+
+.tab-pane .tab-header-area .tab:hover {
+    -fx-background-color: #CBF1F5;
+}
+
+.table-view {
+    -fx-background-color: #E3FDFD;
+    -fx-border-color: #71C9CE;
+    -fx-border-radius: 5px;
+}
+
+.table-view .column-header {
+    -fx-background-color: #A6E3E9;
+    -fx-text-fill: #2C3E50;
+}
+
+.table-view .column-header .label {
+    -fx-text-fill: #2C3E50;
+}
+
+.table-row-cell {
+    -fx-background-color: #E3FDFD;
+    -fx-border-color: #CBF1F5;
+}
+
+.table-row-cell:odd {
+    -fx-background-color: #CBF1F5;
+}
+
+.table-row-cell:selected {
+    -fx-background-color: #71C9CE;
+    -fx-text-fill: white;
+}
+
+.button {
+    -fx-background-color: #A6E3E9;
+    -fx-text-fill: #2C3E50;
+    -fx-padding: 8px 16px;
+    -fx-border-radius: 5px;
+    -fx-cursor: hand;
+}
+
+.button:hover {
+    -fx-background-color: #71C9CE;
+    -fx-text-fill: white;
+}
+
+.button:pressed {
+    -fx-background-color: #5FB8BE;
+}
+
+.text-field {
+    -fx-background-color: #CBF1F5;
+    -fx-border-color: #71C9CE;
+    -fx-border-radius: 5px;
+    -fx-padding: 8px;
+}
+
+.text-field:focused {
+    -fx-border-color: #A6E3E9;
+    -fx-border-width: 2px;
+}
+
+.label {
+    -fx-text-fill: #2C3E50;
+}
+
+#welcomeLabel {
+    -fx-font-weight: bold;
+    -fx-text-fill: #2C3E50;
+}
+
+.tab-pane .tab-content-area {
+    -fx-background-color: #E3FDFD;
+}
+
+.scroll-bar:vertical {
+    -fx-background-color: #E3FDFD;
+    -fx-pref-width: 12;
+    -fx-padding: 0 2px;
+}
+
+.scroll-bar:vertical .thumb {
+    -fx-background-color: #71C9CE;
+    -fx-background-radius: 5px;
+}
+
+.scroll-bar:vertical .track {
+    -fx-background-color: #CBF1F5;
+    -fx-background-radius: 5px;
+}

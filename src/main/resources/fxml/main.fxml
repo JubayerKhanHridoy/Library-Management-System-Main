@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Text?>
+
+<VBox xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" 
+      fx:controller="com.library.controller.MainController"
+      fx:id="root"
+      stylesheets="@../css/styles.css"
+      spacing="10" styleClass="main-container">
+    <padding>
+        <Insets top="20" right="20" bottom="20" left="20"/>
+    </padding>
+
+    <!-- Header Section -->
+    <HBox alignment="CENTER_LEFT" spacing="20" styleClass="header-section">
+        <VBox spacing="5">
+            <Label fx:id="welcomeLabel" styleClass="title-label"/>
+            <Label fx:id="dateLabel" styleClass="subtitle-label"/>
+        </VBox>
+        <Region HBox.hgrow="ALWAYS"/>
+        <Button text="Logout" onAction="#handleLogout" styleClass="logout-button"/>
+    </HBox>
+
+    <!-- Menu Bar -->
+    <MenuBar styleClass="menu-bar">
+        <Menu text="File">
+            <items>
+                <MenuItem fx:id="toggleThemeMenuItem" onAction="#handleToggleTheme" text="Toggle Theme" />
+                <SeparatorMenuItem />
+                <MenuItem fx:id="myAccountMenuItem" onAction="#handleMyAccount" text="My Account" />
+                <MenuItem fx:id="logoutMenuItem" onAction="#handleLogout" text="Logout" />
+                <SeparatorMenuItem />
+                <MenuItem fx:id="exitMenuItem" onAction="#handleExit" text="Exit" />
+            </items>
+        </Menu>
+        <Menu text="Borrowings">
+            <MenuItem text="Issue Book" onAction="#handleIssueBook"/>
+            <MenuItem text="Return Book" onAction="#handleReturnBook"/>
+            <MenuItem text="View Overdue Books" onAction="#handleViewOverdueBooks"/>
+            <MenuItem text="Fine Collection" onAction="#handleFineCollection"/>
+            <MenuItem text="Fine Report" onAction="#handleFineReport"/>
+            <MenuItem text="Borrowing History" onAction="#handleBorrowingHistory"/>
+        </Menu>
+        <Menu text="Help">
+            <MenuItem text="User Guide" onAction="#handleUserGuide"/>
+            <MenuItem text="About" onAction="#handleAbout"/>
+        </Menu>
+    </MenuBar>
+
+    <!-- Main Content -->
+    <TabPane VBox.vgrow="ALWAYS" styleClass="tab-pane">
+        <Tab text="Books" closable="false">
+            <VBox spacing="10" styleClass="content-container" VBox.vgrow="ALWAYS">
+                <HBox spacing="10" alignment="CENTER_LEFT" styleClass="action-bar">
+                    <TextField fx:id="bookSearchField" promptText="Search books..." 
+                             HBox.hgrow="ALWAYS"/>
+                    <Button text="Search" onAction="#handleSearchBooks" 
+                            styleClass="action-button"/>
+                    <Button text="Add Book" onAction="#handleAddBook" 
+                            styleClass="primary-button"/>
+                    <Button text="Add Copy" onAction="#handleAddCopy" 
+                            styleClass="primary-button"/>
+                </HBox>
+
+                <TableView fx:id="booksTable" VBox.vgrow="ALWAYS" maxHeight="Infinity">
+                    <columns>
+                        <TableColumn fx:id="idColumn" text="ID"/>
+                        <TableColumn fx:id="titleColumn" text="Title"/>
+                        <TableColumn fx:id="authorColumn" text="Author"/>
+                        <TableColumn fx:id="isbnColumn" text="ISBN"/>
+                        <TableColumn fx:id="categoryColumn" text="Category"/>
+                        <TableColumn fx:id="statusColumn" text="Status"/>
+                        <TableColumn fx:id="totalCopiesColumn" text="Total Copies"/>
+                    </columns>
+                    <contextMenu>
+                        <ContextMenu>
+                            <items>
+                                <MenuItem text="Edit" onAction="#handleEditBook"/>
+                                <MenuItem text="Delete" onAction="#handleDeleteBook"/>
+                                <MenuItem text="Borrow" onAction="#handleIssueBook"/>
+                                <MenuItem text="Return" onAction="#handleReturnBook"/>
+                            </items>
+                        </ContextMenu>
+                    </contextMenu>
+                </TableView>
+            </VBox>
+        </Tab>
+
+        <Tab text="Students" closable="false">
+            <VBox spacing="10" styleClass="content-container">
+                <HBox spacing="10" alignment="CENTER_LEFT" styleClass="action-bar">
+                    <TextField fx:id="studentSearchField" promptText="Search students..." 
+                             HBox.hgrow="ALWAYS"/>
+                    <Button text="Search" onAction="#handleSearchStudents" 
+                            styleClass="action-button"/>
+                    <Button text="Add Student" onAction="#handleAddStudent" 
+                            styleClass="primary-button"/>
+                </HBox>
+
+                <TableView fx:id="studentsTable" VBox.vgrow="ALWAYS">
+                    <columns>
+                        <TableColumn fx:id="studentIdColumn" text="ID" prefWidth="60" minWidth="60"/>
+                        <TableColumn fx:id="studentNameColumn" text="Name" prefWidth="200" minWidth="150"/>
+                        <TableColumn fx:id="studentIdNumberColumn" text="Student ID" prefWidth="120" minWidth="100"/>
+                        <TableColumn fx:id="studentEmailColumn" text="Email" prefWidth="250" minWidth="200"/>
+                        <TableColumn fx:id="studentContactColumn" text="Contact" prefWidth="150" minWidth="120"/>
+                    </columns>
+                    <contextMenu>
+                        <ContextMenu>
+                            <items>
+                                <MenuItem text="Edit" onAction="#handleEditStudent"/>
+                                <MenuItem text="Delete" onAction="#handleDeleteStudent"/>
+                                <MenuItem text="View History" onAction="#handleViewStudentHistory"/>
+                            </items>
+                        </ContextMenu>
+                    </contextMenu>
+                </TableView>
+            </VBox>
+        </Tab>
+
+        <Tab text="Borrowings" closable="false">
+            <VBox spacing="10">
+                <HBox spacing="10" alignment="CENTER">
+                    <TextField fx:id="borrowingSearchField" HBox.hgrow="ALWAYS" promptText="Search borrowings..."/>
+                    <Button text="Search" onAction="#handleSearchBorrowings"/>
+                    <Button fx:id="returnBookButton" text="Return Book" onAction="#handleReturnBook"/>
+                </HBox>
+                <TableView fx:id="borrowingsTable" VBox.vgrow="ALWAYS">
+                    <columns>
+                        <TableColumn text="ID" fx:id="borrowingIdColumn"/>
+                        <TableColumn text="Book" fx:id="borrowingBookColumn"/>
+                        <TableColumn text="Student" fx:id="borrowingStudentColumn"/>
+                        <TableColumn text="Borrow Date" fx:id="borrowingDateColumn"/>
+                        <TableColumn text="Due Date" fx:id="borrowingDueDateColumn"/>
+                        <TableColumn text="Status" fx:id="borrowingStatusColumn"/>
+                    </columns>
+                </TableView>
+            </VBox>
+        </Tab>
+
+        <Tab text="Book Requests" closable="false">
+            <VBox spacing="10">
+                <HBox spacing="10" alignment="CENTER">
+                    <Button fx:id="approveRequestButton" text="Approve Request" onAction="#handleApproveRequest"/>
+                    <Button fx:id="rejectRequestButton" text="Reject Request" onAction="#handleRejectRequest"/>
+                </HBox>
+                <TableView fx:id="requestsTable" VBox.vgrow="ALWAYS">
+                    <columns>
+                        <TableColumn text="Book Title" fx:id="requestBookTitleColumn"/>
+                        <TableColumn text="Student Name" fx:id="requestStudentNameColumn"/>
+                        <TableColumn text="Request Date" fx:id="requestDateColumn"/>
+                        <TableColumn text="Due Date" fx:id="requestDueDateColumn"/>
+                        <TableColumn text="Status" fx:id="requestStatusColumn"/>
+                    </columns>
+                </TableView>
+            </VBox>
+        </Tab>
+
+        <Tab text="Statistics" closable="false">
+            <VBox spacing="20">
+                <padding>
+                    <Insets top="20" right="20" bottom="20" left="20"/>
+                </padding>
+                <GridPane hgap="20" vgap="20">
+                    <Label text="Total Books:" GridPane.rowIndex="0" GridPane.columnIndex="0" style="-fx-font-size: 14px;"/>
+                    <Label fx:id="totalBooksLabel" GridPane.rowIndex="0" GridPane.columnIndex="1" style="-fx-font-size: 14px; -fx-font-weight: bold;"/>
+                    
+                    <Label text="Total Students:" GridPane.rowIndex="1" GridPane.columnIndex="0" style="-fx-font-size: 14px;"/>
+                    <Label fx:id="totalStudentsLabel" GridPane.rowIndex="1" GridPane.columnIndex="1" style="-fx-font-size: 14px; -fx-font-weight: bold;"/>
+                    
+                    <Label text="Books Currently Borrowed:" GridPane.rowIndex="2" GridPane.columnIndex="0" style="-fx-font-size: 14px;"/>
+                    <Label fx:id="currentBorrowingsLabel" GridPane.rowIndex="2" GridPane.columnIndex="1" style="-fx-font-size: 14px; -fx-font-weight: bold;"/>
+                    
+                    <Label text="Overdue Books:" GridPane.rowIndex="3" GridPane.columnIndex="0" style="-fx-font-size: 14px;"/>
+                    <Label fx:id="overdueBooksLabel" GridPane.rowIndex="3" GridPane.columnIndex="1" style="-fx-font-size: 14px; -fx-font-weight: bold;"/>
+                    
+                    <Label text="Total Unpaid Fines:" GridPane.rowIndex="4" GridPane.columnIndex="0" style="-fx-font-size: 14px;"/>
+                    <Label fx:id="totalFinesLabel" GridPane.rowIndex="4" GridPane.columnIndex="1" style="-fx-font-size: 14px; -fx-font-weight: bold;"/>
+                </GridPane>
+
+                <Separator/>
+
+                <Label text="Recent Activities" style="-fx-font-size: 16px; -fx-font-weight: bold;"/>
+                <ListView fx:id="recentActivitiesList" VBox.vgrow="ALWAYS" prefHeight="200"/>
+            </VBox>
+        </Tab>
+    </TabPane>
+
+    <!-- Status Bar -->
+    <HBox alignment="CENTER_RIGHT" spacing="10" styleClass="status-bar">
+        <Text fx:id="statusText" styleClass="status-text"/>
+    </HBox>
+
+</VBox> 
